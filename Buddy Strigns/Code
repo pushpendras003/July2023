@@ -1,0 +1,25 @@
+class Solution:
+    def buddyStrings(self, s: str, goal: str) -> bool:
+
+      if len(goal)!=len(s):return False
+      st=set()
+      if goal==s:
+        for i in s:
+          if i in st:return True
+          st.add(i)
+        return False
+      
+      c=0
+      v1=v2=""
+      for i in range(len(goal)):
+        if s[i]!=goal[i] and c==0:
+          v1=s[i]
+          v2=goal[i]
+          c+=1
+        elif s[i]!=goal[i] and c==1:
+          if s[i]!=v2 or goal[i]!=v1:return False
+          c+=1
+        elif s[i]!=goal[i] and c==2:return False
+      return True if c==2 else False
+
+
