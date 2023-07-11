@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+      conn=defaultdict(list)
+      def connect(p,c):
+        if p and c:
+          conn[p.val].append(c.val)
+          conn[c.val].append(p.val)
+        if c.left: connect(c,c.left)
+        if c.right:connnect(c, c.right)
+      connect(None,root)
+      bfs=[target.val]
+      seen=set(bfs)
+      for i in range(k):
+        new_level=[]
+        for q_node_val in bfs:
+          for conn_node_Val in conn[q_node_val]:
+            if conn_node_Val not in seen:
+              new_level.append(conn_node_Val)
+        bfs=new_level
+        seen |= set(bfs)
+      return bfs
