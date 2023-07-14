@@ -1,0 +1,12 @@
+class Solution:
+    def longestSubsequence(self, arr: List[int], d: int) -> int:
+      dp={}
+      ans=1
+      for i in arr:
+        if i-d in dp:
+          dp[i]=dp[i-d]+1
+        else:
+          dp[i]=1
+        ans=max(ans,dp[i])
+      return ans 
+      
