@@ -1,0 +1,17 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        x=[]
+        def helper(i,candidates,target,l):
+            if i==len(candidates):
+                if target==0:
+                    print(l)
+                    x.append(l.copy())
+                return
+            if candidates[i]<=target:
+                l.append(candidates[i])
+                helper(i,candidates,target-candidates[i],l)
+                l.pop()
+            helper(i+1,candidates,target,l)
+        helper(0,candidates,target,[])
+        return x
+        
