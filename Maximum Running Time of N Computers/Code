@@ -1,0 +1,8 @@
+class Solution:
+    def maxRunTime(self, n: int, batt: List[int]) -> int:
+      batt.sort()
+      avg=sum(batt)
+      while batt[-1]> avg//n:
+        n-=1
+        avg-=batt.pop()
+      return avg//n
