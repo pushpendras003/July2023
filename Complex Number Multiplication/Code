@@ -1,0 +1,29 @@
+class Solution:
+    def complexNumberMultiply(self, num1: str, num2: str) -> str:
+      
+      a=b=0
+      def helper(a,b,num1,s):
+        for i in num1:
+          if i=='+':
+            a=int(s)
+            s=''
+            continue
+          if i=='i':
+            if s[0]=='-1':
+              s.pop(0)
+              b=-1*int(s)
+            else:
+              b=int(s)
+            break
+          s+=i
+        return a,b
+      a,b=helper(0,0,num1,'')
+      c,d=helper(0,0,num2,'')
+      t1=a*c+(b*d*-1)
+      t2=a*d+b*c
+      ans=str(t1)+"+"+str(t2)+"i"
+      return ans 
+      
+      
+
+          
