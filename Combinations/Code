@@ -1,0 +1,16 @@
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+      
+
+      def helper(i,n,arr,k):
+        if len(arr)==k:
+          self.ans.append(arr)
+          return 
+        if i>n:return 
+        for j in range(i+1,n+1):
+          arr.append(j)
+          helper(j,n,arr.copy(),k)
+          arr.pop()
+      self.ans=[]
+      helper(0,n,[],k)
+      return self.ans
