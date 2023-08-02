@@ -1,0 +1,18 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        l=[]
+        def helper(nums,i,n):
+          if i==n:
+            l.append(nums.copy())
+          for j in range(i,n):
+            nums[i],nums[j]=nums[j],nums[i]
+            helper(nums,i+1,n)
+            nums[i],nums[j]=nums[j],nums[i]
+        n=len(nums)
+        helper(nums,0,n)
+        return l
+
+        
+
+ 
